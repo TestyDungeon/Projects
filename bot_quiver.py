@@ -1,16 +1,11 @@
 import lightbulb
 import hikari
-# import os
-# from dotenv import load_dotenv
-# from discord.ext import commands
+import os
 
-
-
-# intents = discord.Intents.default()
-# intents.message_content = True
-
+TOKEN = os.getenv("TOKEN")
+print(TOKEN)
 bot = lightbulb.BotApp(
-    token="MTI1ODQ5OTA0MDc4NjY0NTE1Mw.G4b0cs.DqQwnn76nJtw40jiP4NWlXLQ7PWH-T6Xsw_yFc",
+    token=TOKEN,
     default_enabled_guilds=(1258506213528834170))
 
 @bot.listen(hikari.StartedEvent)
