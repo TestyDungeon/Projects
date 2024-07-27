@@ -1,15 +1,21 @@
+def romanToInt(s: str) -> int:
+        int_value = 0
+        for i in s:
+            match i:
+                case "I":
+                    int_value += 1
+                case "V":
+                    int_value += 5
+                case "X":
+                    int_value += 10
+                case "L":
+                    int_value += 50
+                case "C":
+                    int_value += 100
+                case "D":
+                    int_value += 500
+                case "M":
+                    int_value += 1000
+        return int_value
 
-class Solution:
-    def twoSum(nums: list[int], target: int) -> list[int]:
-        dict_pre = []
-        for i in nums:
-            if target - i in dict_pre:
-                dict_pre.append(i)
-                ind1 = dict_pre.index(i)
-                dict_pre[ind1] = None
-                return ind1, dict_pre.index(target - i)
-            else:
-                dict_pre.append(i)
-                    
-sl = Solution
-print(sl.twoSum([3, 3], 6))
+print(romanToInt("IV"))        

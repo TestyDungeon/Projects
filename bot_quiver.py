@@ -2,10 +2,8 @@ import lightbulb
 import hikari
 import os
 
-TOKEN = os.getenv("TOKEN")
-print(TOKEN)
 bot = lightbulb.BotApp(
-    token=TOKEN,
+    token="",
     default_enabled_guilds=(1258506213528834170))
 
 @bot.listen(hikari.StartedEvent)
