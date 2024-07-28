@@ -4,7 +4,9 @@ import requests
 from bs4 import BeautifulSoup, SoupStrainer
 import os
 import re  
-import urllib.request
+import google_auth_oauthlib.flow
+import googleapiclient.discovery
+import googleapiclient.errors
 
 # plugin = lightbulb.Plugin("Discord Music MP3 Downloader")
 
@@ -17,6 +19,9 @@ import urllib.request
 # @lightbulb.implements(lightbulb.SlashCommand)
 # async def _integral(ctx):
 
+api_service_name = "youtube"
+api_version = "v3"
+
 url = "https://music.youtube.com/watch?v=dGzvyW4_T5U&si=uVTCLSeYn9-iHhvR"
 
 r = requests.get(url)
@@ -26,10 +31,17 @@ content_values = [tag['content'] for tag in soup.find_all(attrs={"property" : "o
 song_names = re.sub(r'[^\w]', '+', str(content_values))
 print(song_names)
 
-html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + song_names)
-print(html.read().decode())
+#html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + "despacito")
+#print(html.read().decode()[:70000])
 
-# soup2 = BeautifulSoup(r2.content, 'html.parser', parse_only=SoupStrainer('a'))
+#soup2 = BeautifulSoup(html.read().decode()[:10000], 'html.parser')
+
+youtube = googleapiclient.discovery.build(api_service_name, api_version, credentials=credentials)
+
+request = youtube.search().list(q="exam")
+response = request.execute()
+
+print(response)
 
 # for link in soup2:
 #     if link.has_attr('href'):
